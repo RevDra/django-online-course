@@ -28,8 +28,10 @@ class LessonInline(admin.StackedInline):
 class CourseAdmin(admin.ModelAdmin):
     # Khai báo LessonInline nếu boilerplate đã có sẵn, thêm QuestionInline vào
     # Giả sử boilerplate đã định nghĩa LessonInline ở trên
-    inlines = [LessonInline, QuestionInline] 
+    inlines = [LessonInline, QuestionInline]
     list_display = ('name', 'pub_date')
+    list_filter = ['pub_date']
+    search_fields = ['name', 'description']
 
 # Đăng ký các model với admin site
 admin.site.register(Course, CourseAdmin)
